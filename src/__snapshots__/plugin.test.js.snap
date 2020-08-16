@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`autoconfig-rewriter arrow-function-expression: arrow-function-expression 1`] = `
+
+config = {
+    "target": () => {
+        var today = new Date();
+        return today.getDay() == 3;
+    }
+};
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+config = {
+  target: " (() => { var today = new Date(); return today.getDay() == 3; })()",
+};
+
+
+`;
+
+exports[`autoconfig-rewriter conditional-expression: conditional-expression 1`] = `
+
+config = {
+    "target": parseFloat(this.pair.currentQty) > 0 ? 1 : 2
+};
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+config = {
+  target: " parseFloat(this.pair.currentQty) > 0 ? 1 : 2",
+};
+
+
+`;
+
+exports[`autoconfig-rewriter empty-autoconfig: empty-autoconfig 1`] = `
+
+config = {};
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+config = {};
+
+
+`;
