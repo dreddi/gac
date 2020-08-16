@@ -1,0 +1,43 @@
+{
+  "name": "gac",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "homepage": "https://github.com/soccer193/gac#readme",
+  "bin": {
+    "gac": "bin/gac"
+  },
+  "dependencies": {
+    "@babel/core": "^7.11.0",
+    "@babel/generator": "^7.11.0",
+    "@babel/parser": "^7.11.3",
+    "@babel/traverse": "^7.11.0",
+    "minimist": "^1.2.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "babel-plugin-tester": "^9.2.0",
+    "jest": "^26.4.0"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "babel -d dist/ src/",
+    "start": "npm run build && node ./dist/index.js",
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/dist/"
+    ]
+  },
+  "author": "soccer193",
+  "license": "ISC"
+}
