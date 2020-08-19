@@ -11,17 +11,16 @@ Turns
             "exchange": "binanceFutures"
         },
         "filters": {
-            "noposition": {
+            "long": {
                 "type": "exact",
-                "state": "NO POSITION"
+                "state": "LONG"
             },
         },
         "clearOverrides": false,
         "setPairVariable": {
         },
         "overrides": {
-            "TRADING_LIMIT": () => {
-                let wallet = parseFloat(this.pair.balancesdata['USDT'].walletBalance);
+            "TRADING_LIMIT": function autotl(wallet) {
 
                 if(wallet > 5000 && wallet <= 7000){
                     return 100;
@@ -32,7 +31,9 @@ Turns
                 }
 
                 return 0;
-            },
+            }(
+                this.pair.balancesdata['USDT'].walletBalance
+            ),
             "ROE": this.pair.leverage * 0.5
         },
         "schedule": "* * * * *",
@@ -54,15 +55,15 @@ into
       "exchange": "binanceFutures"
     },
     "filters": {
-      "noposition": {
+      "long": {
         "type": "exact",
-        "state": "NO POSITION"
+        "state": "LONG"
       }
     },
     "clearOverrides": false,
     "setPairVariable": {},
     "overrides": {
-      "TRADING_LIMIT": " (() => { let wallet = parseFloat(this.pair.balancesdata['USDT'].walletBalance); if (wallet > 5000 && wallet <= 7000) { return 100; } else if (wallet > 7000 && wallet <= 10000) { return 120; } else if (wallet > 10000 && wallet < 15000) { return 150; } return 0; })()",
+      "TRADING_LIMIT": " function autotl(wallet) { if (wallet > 5000 && wallet <= 7000) { return 100; } else if (wallet > 7000 && wallet <= 10000) { return 120; } else if (wallet > 10000 && wallet < 15000) { return 150; } return 0; }(this.pair.balancesdata['USDT'].walletBalance)",
       "ROE": " this.pair.leverage * 0.5"
     },
     "schedule": "* * * * *",
